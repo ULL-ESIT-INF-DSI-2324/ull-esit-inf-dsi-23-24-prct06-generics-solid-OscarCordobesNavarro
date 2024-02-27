@@ -3,7 +3,7 @@
         "./src/ejercicio-1/*.ts",
     ],
     "out": "./docs",
-    "name": "💻 Práctica 6 - Objetos, clases e interfaces 💻",
+    "name": "💻 Práctica 6 - Clases e interfaces genéricas. Principios SOLID 💻",
     "plugin": ["typedoc-material-theme"],
     "themeColor": "#00FF73"
 }
