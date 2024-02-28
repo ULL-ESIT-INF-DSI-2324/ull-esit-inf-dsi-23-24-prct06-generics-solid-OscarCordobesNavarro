@@ -1,6 +1,6 @@
 {
     "entryPoints": [
-        "./src/ejercicio-1/*.ts",
+        "./src/Modificacion-1/*.ts",
     ],
     "out": "./docs",
     "name": "💻 Práctica 6 - Clases e interfaces genéricas. Principios SOLID 💻",
