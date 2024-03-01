@@ -35,8 +35,7 @@ export class Complex implements Arithmeticable<Complex> {
      * @returns El resultado de la suma.
      */
     add(b: Complex): Complex {
-        const result = new Complex(this.real + b.real, this.imaginary + b.imaginary);
-        return result;
+        return new Complex(this.real + b.real, this.imaginary + b.imaginary);
     }
     
     /**
@@ -45,8 +44,7 @@ export class Complex implements Arithmeticable<Complex> {
      * @returns El resultado de la resta.
      */
     subtract(b: Complex): Complex {
-        const result = new Complex(this.real - b.real, this.imaginary - b.imaginary);
-        return result;
+        return new Complex(this.real - b.real, this.imaginary - b.imaginary);
     }
     
     /**
@@ -55,8 +53,7 @@ export class Complex implements Arithmeticable<Complex> {
      * @returns El resultado de la multiplicación.
      */
     multiply(b: Complex): Complex {
-        const result = new Complex(this.real * b.real - this.imaginary * b.imaginary, this.real * b.imaginary + this.imaginary * b.real);
-        return result;
+        return new Complex(this.real * b.real - this.imaginary * b.imaginary, this.real * b.imaginary + this.imaginary * b.real);
     }
     
     /**
@@ -65,8 +62,7 @@ export class Complex implements Arithmeticable<Complex> {
      * @returns El resultado de la división.
      */
     divide(b: Complex): Complex {
-        const result = new Complex((this.real * b.real + this.imaginary * b.imaginary) / (b.real * b.real + b.imaginary * b.imaginary), (this.imaginary * b.real - this.real * b.imaginary) / (b.real * b.real + b.imaginary * b.imaginary));
-        return result;
+        return new Complex((this.real * b.real + this.imaginary * b.imaginary) / (b.real * b.real + b.imaginary * b.imaginary), (this.imaginary * b.real - this.real * b.imaginary) / (b.real * b.real + b.imaginary * b.imaginary));
     }
 
     /**
