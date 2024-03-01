@@ -33,6 +33,7 @@ export class ExportPDF implements ExportBill {
     const doc = new PDFDocument({ size: "A4" });
     const output = fs.createWriteStream("./exports/bill.pdf");
 
+    // Si no existe el directorio, lo creamos
     if (!fs.existsSync("./exports")) {
       fs.mkdirSync("./exports");
     }

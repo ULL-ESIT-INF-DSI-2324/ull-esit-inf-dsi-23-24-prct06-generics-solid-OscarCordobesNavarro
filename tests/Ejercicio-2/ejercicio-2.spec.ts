@@ -43,14 +43,18 @@ describe("Exporter class tests", () => {
 
     it("Exporter class can export to PDF", () => {
         const exporter: Exporter<ExportBill> = new Exporter<ExportBill>(new ExportPDF());
-        const bill: Bill = new Bill(1, new Date() , 100, "oscar");
+        const bill: Bill = new Bill(1, new Date() , 100, "oscar", false);
         exporter.exportBill(bill);
+        const bill2: Bill = new Bill(2, new Date() , 200, "pablo", true);
+        exporter.exportBill(bill2);
     });
 
     it("Exporter class can export to HTML", () => {
         const exporter: Exporter<ExportBill> = new Exporter<ExportBill>(new ExportHTML());
-        const bill: Bill = new Bill(1, new Date() , 100, "oscar");
+        const bill: Bill = new Bill(1, new Date() , 100, "oscar", false);
         exporter.exportBill(bill);
+        const bill2: Bill = new Bill(2, new Date() , 200, "pablo", true);
+        exporter.exportBill(bill2);
     });
 
     it("Exporter class can change exporter between PDF and HTML", () => {
@@ -90,12 +94,13 @@ describe("BillsHandler class tests", () => {
     });
 
     it("BillsHandler class can export bills only tomas", () => {
-        const billsHandler: BillsHandler = new BillsHandler();
         const bill: Bill = new Bill(1, new Date() , 100, "tomas");
         const bill2: Bill = new Bill(2, new Date() , 200, "pablo");
+        const billsHandler: BillsHandler = new BillsHandler([bill, bill2]);
         billsHandler.addBill(bill);
         billsHandler.addBill(bill2);
         billsHandler.exportBill(1);
+        billsHandler.exportBill(3);
     });
 
     it("BillsHandler class can list bills, andres and pablo", () => {
