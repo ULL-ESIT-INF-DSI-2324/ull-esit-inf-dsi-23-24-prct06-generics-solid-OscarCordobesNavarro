@@ -12,12 +12,12 @@
 
 import "mocha";
 import { expect } from "chai";
-import { Bill } from "../src/Ejercicio-2/Bill";
-import { Exporter } from "../src/Ejercicio-2/Exporter";
-import { ExportBill } from "../src/Ejercicio-2/ExportBill";
-import { ExportPDF } from "../src/Ejercicio-2/ExportPDF";
-import { ExportHTML } from "../src/Ejercicio-2/ExportHTML";
-import { BillsHandler } from "../src/Ejercicio-2/BillsHandler";
+import { Bill } from "../../src/Ejercicio-2/Bill";
+import { Exporter } from "../../src/Ejercicio-2/Exporter";
+import { ExportBill } from "../../src/Ejercicio-2/ExportBill";
+import { ExportPDF } from "../../src/Ejercicio-2/ExportPDF";
+import { ExportHTML } from "../../src/Ejercicio-2/ExportHTML";
+import { BillsHandler } from "../../src/Ejercicio-2/BillsHandler";
 
 describe("Bill class tests", () => {
     it("Bill class is defined", () => {

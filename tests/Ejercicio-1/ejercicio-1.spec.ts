@@ -13,11 +13,11 @@
 import "mocha";
 import { expect } from "chai";
 
-import { Belonging, size } from "../src/Ejercicio-1/Belonging";
-import { Clothes } from "../src/Ejercicio-1/Clothes";
-import { Furniture } from "../src/Ejercicio-1/Furniture";
-import { Box } from "../src/Ejercicio-1/Box";
-import { MovingHandler } from "../src/Ejercicio-1/MovingHandler";
+import { Belonging, size } from "../../src/Ejercicio-1/Belonging";
+import { Clothes } from "../../src/Ejercicio-1/Clothes";
+import { Furniture } from "../../src/Ejercicio-1/Furniture";
+import { Box } from "../../src/Ejercicio-1/Box";
+import { MovingHandler } from "../../src/Ejercicio-1/MovingHandler";
 
 describe("Belonging items tests", () => {
   it("Clothes tests", () => {
