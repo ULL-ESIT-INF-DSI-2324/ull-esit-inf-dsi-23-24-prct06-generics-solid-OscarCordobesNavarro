@@ -433,3 +433,83 @@ export class Notifier<T> {
   }
 }
 ```
+
+### Ejercicio Modificación
+
+En este ejercicio, la idea es crear una interfaz llamada Arithmeticable, la cual implementaremos en diversos conjuntos matemáticos, tales como los números complejos y los números racionales. Esta interfaz respaldará las cuatro operaciones básicas de la aritmética.
+
+```typescript
+export interface Arithmeticable<T> {
+  add: (b: T) => T;
+
+  subtract: (b: T) => T;
+
+  multiply: (b: T) => T;
+
+  divide: (b: T) => T;
+}
+```
+
+> Como podemos ver utilizamos parámetros de tipo para poder adaptarnos a los distintos conjuntos, ya que pueden ser mas de los que vamos a tratar.
+
+Una vez que tenemos esta interfaz, procederemos a implementarla en las distintas clases que representan conjuntos, tomando como ejemplo la clase `Complex`:
+
+```typescript
+export class Complex implements Arithmeticable<Complex> {
+    private real: number;
+    private imaginary: number;
+    
+    constructor(real: number, imaginary: number) {
+        this.real = real;
+        this.imaginary = imaginary;
+    }
+    
+    add(b: Complex): Complex {
+        return new Complex(this.real + b.real, this.imaginary + b.imaginary);
+    }
+    
+    subtract(b: Complex): Complex {
+        return new Complex(this.real - b.real, this.imaginary - b.imaginary);
+    }
+    
+    multiply(b: Complex): Complex {
+        return new Complex(this.real * b.real - this.imaginary * b.imaginary, this.real * b.imaginary + this.imaginary * b.real);
+    }
+    
+    divide(b: Complex): Complex {
+        return new Complex((this.real * b.real + this.imaginary * b.imaginary) / (b.real * b.real + b.imaginary * b.imaginary), (this.imaginary * b.real - this.real * b.imaginary) / (b.real * b.real + b.imaginary * b.imaginary));
+    }
+
+    toString(): string {
+        return `${this.real} + ${this.imaginary}i`;
+    }
+}
+```
+
+Y para terminar, vamos a tener una clase `ArithmeticableCollection` que será una colleción de `Complex` o de `Rational`, pudiendose extender a otras siempre y cuando estas otras implementen la interfaz `Arithmeticable`:
+
+```typescript
+export class ArithmeticableCollection<T extends Arithmeticable<T>> {
+  private collection: T[];
+
+  constructor(collection: T[]) {
+    this.collection = collection;
+  }
+
+  addAritmeticable(a: T): void {
+    this.collection.push(a);
+  }
+
+  getAritmeticable(index: number): T {
+    return this.collection[index];
+  }
+
+  getNumberOfAritmeticables(): number {
+    return this.collection.length;
+  }
+}
+```
+
+## Conclusión
+
+En conclusión, se destaca la aplicación de los principios SOLID mediante ejercicios prácticos, como la gestión de mudanzas, exportación de facturas, manejo de archivos, y servicios de impresión y escaneo. La adopción de interfaces y clases genéricas proporciona mayor flexibilidad y escalabilidad en el diseño del código. Asimismo, la aplicación de los principios SOLID contribuye a un diseño más modular y fácil de mantener. Estas prácticas demuestran la importancia de seguir buenas prácticas de programación para lograr un código robusto y eficiente.
