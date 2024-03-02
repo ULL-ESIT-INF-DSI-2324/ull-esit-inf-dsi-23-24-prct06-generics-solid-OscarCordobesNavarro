@@ -10,6 +10,12 @@
  * Práctica 6: Clases e interfaces genéricas. Principios SOLID
  */
 
+/**
+ * Interfaz que representa un objeto imprimible.
+ */
 export interface Printable {
+  /**
+   * Método que imprime el objeto.
+   */
   print(): void;
 }

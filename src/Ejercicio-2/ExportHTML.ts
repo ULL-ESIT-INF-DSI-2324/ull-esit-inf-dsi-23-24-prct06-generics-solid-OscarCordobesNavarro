@@ -14,18 +14,35 @@ import { Bill } from "./Bill";
 import { ExportBill } from "./ExportBill";
 import * as fs from "fs";
 
+/**
+ * Clase que implementa la interfaz ExportBill y se encarga de exportar una factura a formato HTML.
+ */
 export class ExportHTML implements ExportBill {
   public extention: string = "html";
 
+  /**
+   * Exporta una factura a formato HTML.
+   * @param bill La factura a exportar.
+   */
   exportBill(bill: Bill): void {
-    console.log(`Exporting bill ${bill.getId()} to HTML`);
+    console.log(`Exportando factura ${bill.getId()} a HTML`);
     console.log(this.createHTML(bill));
   }
 
+  /**
+   * Crea el contenido HTML de la factura.
+   * @param bill La factura para la cual se va a generar el HTML.
+   * @returns El contenido HTML generado.
+   */
   private createHTML(bill: Bill): string {
     return this.generateHTML(bill);
   }
 
+  /**
+   * Genera el contenido HTML de la factura.
+   * @param bill La factura para la cual se va a generar el HTML.
+   * @returns El contenido HTML generado.
+   */
   private generateHTML(bill: Bill) {
     const htmlString = ` <!DOCTYPE html>
     <html lang="en">
@@ -33,7 +50,7 @@ export class ExportHTML implements ExportBill {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bill ${bill.getId()}</title>
+        <title>Factura ${bill.getId()}</title>
         <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -87,10 +104,10 @@ export class ExportHTML implements ExportBill {
     
     <body>
         <h1>Bill ${bill.getId()}</h1>
-        <p>Amount: ${bill.getAmount()}€</p>
-        <p>Date: ${bill.getDate()}</p>
-        <p>Client: ${bill.getClient()}</p>
-        <p>Paid: ${bill.getPaid() ? "Yes" : "No"}</p>
+        <p>Total: ${bill.getAmount()}€</p>
+        <p>Fecha: ${bill.getDate()}</p>
+        <p>Cliente: ${bill.getClient()}</p>
+        <p>¿Está pagada?: ${bill.getPaid() ? "Sí" : "No"}</p>
     </body>
     
     </html>`;

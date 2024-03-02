@@ -10,6 +10,14 @@
  * Práctica 6: Clases e interfaces genéricas. Principios SOLID
  */
 
+/**
+ * Interfaz que define un servicio de notificación genérico.
+ * @template T - El tipo de mensaje que se va a notificar.
+ */
 export interface NotificationService<T> { 
+    /**
+     * Método para notificar un mensaje.
+     * @param message - El mensaje a notificar.
+     */
     notify(message: T): void;
 }

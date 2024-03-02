@@ -13,11 +13,22 @@
 import { Printable } from './Printable';
 import { Scannable } from './Scannable';
 
+/**
+ * Clase que representa una impresora y escáner.
+ * Implementa las interfaces Printable y Scannable.
+ */
 export class PrinterScanner implements Printable, Scannable {
+  /**
+   * Imprime un documento.
+   */
   print(): void {
-    console.log('Printing...');
+    console.log('Imprimiendo...');
   }
+
+  /**
+   * Escanea un documento.
+   */
   scan(): void {
-    console.log('Scanning...');
+    console.log('Escaneando...');
   }
 }

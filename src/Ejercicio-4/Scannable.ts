@@ -10,6 +10,12 @@
  * Práctica 6: Clases e interfaces genéricas. Principios SOLID
  */
 
+/**
+ * Interfaz que representa un objeto escaneable.
+ */
 export interface Scannable {
+  /**
+   * Realiza un escaneo del objeto.
+   */
   scan(): void;
 }

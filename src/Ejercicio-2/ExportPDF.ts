@@ -10,25 +10,32 @@
  * Práctica 6: Clases e interfaces genéricas. Principios SOLID
  */
 
-// './exports/bill.pdf'
-
 import { Bill } from "./Bill";
 import { ExportBill } from "./ExportBill";
 import * as PDFDocument from "pdfkit";
 import * as fs from "fs";
 
+/**
+ * Clase que representa la exportación de una factura a formato PDF.
+ * Implementa la interfaz ExportBill.
+ */
 export class ExportPDF implements ExportBill {
   public extention: string = "pdf";
 
+  /**
+   * Exporta una factura a formato PDF.
+   * @param bill La factura a exportar.
+   */
   exportBill(bill: Bill): void {
-    console.log(`Exporting bill ${bill.getId()} to PDF`);
-    console.log(this.createPDF(bill));
+    console.log(`Exportando factura ${bill.getId()} a PDF`);
+    console.log(this.generatePDF(bill));
   }
 
-  private createPDF(bill: Bill): string {
-    return this.generatePDF(bill);
-  }
-
+  /**
+   * Genera el contenido PDF de la factura.
+   * @param bill La factura para la cual se va a generar el PDF.
+   * @returns Fragmento de texto que indica la ruta del PDF generado.
+   */
   private generatePDF(bill: Bill) {
     const doc = new PDFDocument({ size: "A4" });
     const output = fs.createWriteStream("./exports/bill.pdf");

@@ -12,7 +12,14 @@
 
 import { NotificationService } from "./NotificationService";
 
+/**
+ * Clase que implementa la interfaz NotificationService y se encarga de enviar notificaciones por SMS.
+ */
 export class ShortMessageService implements NotificationService<string> {
+  /**
+   * Método que envía una notificación por SMS.
+   * @param message El mensaje a enviar.
+   */
   notify(message: string): void {
     console.log(`Sending notification by SMS: ${message}`);
   }

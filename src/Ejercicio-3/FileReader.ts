@@ -12,13 +12,24 @@
 
 import * as fs from "fs";
 
+/**
+ * Clase FileReader que permite leer el contenido de un archivo.
+ */
 export class FileReader {
   private file: string;
 
+  /**
+   * Crea una instancia de FileReader.
+   * @param file Ruta del archivo a leer.
+   */
   constructor(file: string) {
     this.file = file;
   }
 
+  /**
+   * Lee el contenido del archivo.
+   * @returns El contenido del archivo leído.
+   */
   public readFile(): string {
     try {
       const content: string = fs.readFileSync(this.file, "utf-8");

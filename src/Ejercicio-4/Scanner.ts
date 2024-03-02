@@ -12,7 +12,15 @@
 
 import { Scannable } from "./Scannable";
 
+/**
+ * Clase que representa un escáner.
+ * Implementa la interfaz Scannable.
+ */
 export class Scanner implements Scannable {
+  /**
+   * Realiza el escaneo.
+   * Imprime en la consola 'Scanning...'.
+   */
   scan(): void {
     console.log('Scanning...');
   }

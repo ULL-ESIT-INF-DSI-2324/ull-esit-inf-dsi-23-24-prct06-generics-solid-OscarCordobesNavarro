@@ -12,8 +12,18 @@
 
 import { Bill } from './Bill';
 
+/**
+ * Interfaz que representa una factura exportable.
+ */
 export interface ExportBill {
+    /**
+     * Extensión del archivo de exportación.
+     */
     extention: string;
 
+    /**
+     * Exporta una factura.
+     * @param bill La factura a exportar.
+     */
     exportBill(bill: Bill): void;
 }

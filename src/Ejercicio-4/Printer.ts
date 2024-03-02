@@ -12,8 +12,14 @@
 
 import { Printable } from './Printable';
 
+/**
+ * Clase que implementa la interfaz Printable y representa una impresora.
+ */
 export class Printer implements Printable {
+  /**
+   * Imprime un documento.
+   */
   print(): void {
-    console.log('Printing...');
+    console.log('Imprimiendo...');
   }
 }

@@ -12,11 +12,20 @@
 
 import { Belonging, size } from './Belonging';
 
+/**
+ * Clase que representa una prenda de ropa.
+ */
 export class Clothes implements Belonging {
     name: string;
     delicate: boolean;
     size: size = size.SMALL;
 
+    /**
+     * Crea una instancia de Clothes.
+     * @param name - El nombre de la prenda de ropa.
+     * @param delicate - Indica si la prenda de ropa es delicada.
+     * @param size - El tamaño de la prenda de ropa (opcional).
+     */
     constructor(name: string, delicate: boolean, size?: size) {
         this.name = name;
         this.delicate = delicate;
@@ -25,14 +34,26 @@ export class Clothes implements Belonging {
         }
     }
 
+    /**
+     * Obtiene el nombre de la prenda de ropa.
+     * @returns El nombre de la prenda de ropa.
+     */
     getName(): string {
         return this.name;
     }
 
+    /**
+     * Indica si la prenda de ropa es delicada.
+     * @returns true si la prenda de ropa es delicada, false en caso contrario.
+     */
     getDelicate(): boolean {
         return this.delicate;
     }
 
+    /**
+     * Obtiene el tamaño de la prenda de ropa.
+     * @returns El tamaño de la prenda de ropa.
+     */
     getSize(): size {
         return this.size;
     }
