@@ -17,7 +17,7 @@ Por último, también estaremos utilizando Istanbul y Coveralls para el cubrimie
 
 La idea es crear un tipo de gestor para una mudanza, donde tendremos enseres que serán almacenados en cajas. Posteriormente, estas cajas serán gestionadas por el servicio de mudanza en sí. El sistema se estructurará de la siguiente manera:
 
-![Esquema ejercicio 1](./IdeaEjercicio-1.png)
+![Esquema ejercicio 1](./doc/IdeaEjercicio-1.png)
 
 Un ejemplo de un objeto que implementa la interfaz `Belonging` es la que hace referencia a la ropa
 ```typescript
