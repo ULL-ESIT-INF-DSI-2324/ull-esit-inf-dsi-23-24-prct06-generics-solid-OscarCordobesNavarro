@@ -20,8 +20,11 @@ import { Box } from "../../src/Ejercicio-1/Box";
 import { MovingHandler } from "../../src/Ejercicio-1/MovingHandler";
 
 describe("Belonging items tests", () => {
-  it("Clothes tests", () => {
+  describe("Clothes tests", () => {
     const clothes = new Clothes("shirt", false);
+    const clothes2 = new Clothes("shirt", false, size.LARGE);
+    let sizeCl2 = clothes2.getSize();
+    let delicateCl2 = clothes2.getDelicate();
     it("Clothes name test", () => {
       expect(clothes.getName()).to.equal("shirt");
     });
@@ -33,19 +36,34 @@ describe("Belonging items tests", () => {
     it("Clothes delicacy test", () => {
       expect(clothes.getDelicate()).to.equal(false);
     });
+
+    it("Clothes name test", () => {
+      expect(clothes2.getName()).to.equal("shirt");
+    });
+
+    it("Clothes size test", () => {
+      expect(sizeCl2).to.equal(size.LARGE);
+    });
+    it("Clothes delicacy test", () => {
+      expect(delicateCl2).to.equal(false);
+    });
   });
-  it("Furniture tests", () => {
+
+  describe("Furniture tests", () => {
     const furniture = new Furniture("table", true, size.LARGE);
+    const furnitureSize = furniture.getSize();
+    const furnitureDelicate = furniture.getDelicate();
+
     it("Furniture name test", () => {
       expect(furniture.getName()).to.equal("table");
     });
 
     it("Furniture size test", () => {
-      expect(furniture.getSize()).to.equal(size.LARGE);
+      expect(furnitureSize).to.equal(size.LARGE);
     });
 
     it("Furniture delicacy test", () => {
-      expect(furniture.getDelicate()).to.equal(true);
+      expect(furnitureDelicate).to.equal(true);
     });
   });
 });
@@ -82,32 +100,65 @@ describe("Box tests", () => {
   it("removeItem 'table' should return undefined", () => {
     expect(box.removeItem("table")).to.equal(undefined);
   });
+
+  it("list items", () => {
+    expect(box.listItems()).to.equal(undefined);
+  });
+
+  it("list more items", () => {
+    const clothes2 = new Clothes("shirt", false);
+    const furniture2 = new Furniture("table", true, size.LARGE);
+    const clothes3 = new Clothes("pants", false);
+    const furniture3 = new Furniture("chair", true, size.LARGE);
+    box.addItem(clothes2);
+    box.addItem(furniture2);
+    box.addItem(clothes3);
+    box.addItem(furniture3);
+    expect(box.listItems()).to.equal(undefined);
+  });
 });
 
 describe("MovingHandler tests", () => {
   const box = new Box<Belonging>("box1");
+  const box2 = new Box<Belonging>("box2");
+  const box3 = new Box<Belonging>("box3");
+  const box4 = new Box<Belonging>("box4");
   const clothes = new Clothes("shirt", false);
   const furniture = new Furniture("table", true, size.LARGE);
   box.addItem(clothes);
   box.addItem(furniture);
-  const box2 = new Box<Belonging>("box2");
-  const box3 = new Box<Belonging>("box3");
-  const box4 = new Box<Belonging>("box4");
   const movingHandler = new MovingHandler();
   movingHandler.addBox(box);
   movingHandler.addBox(box2);
   movingHandler.addBox(box3);
   movingHandler.addBox(box4);
+
   it("addBox should return undefined", () => {
     expect(movingHandler.addBox(box)).to.equal(undefined);
   });
+
   it("removeBox should return undefined", () => {
     expect(movingHandler.removeBox("box1")).to.equal(undefined);
   });
+
   it("findBox should return box2", () => {
     expect(movingHandler.findBox("box2")).to.equal(box2);
   });
+
   it("findBox should return box3", () => {
     expect(movingHandler.findBox("box3")).to.equal(box3);
+  });
+
+  it("remove box2", () => {
+    movingHandler.removeBox("box2");
+    expect(movingHandler.findBox("box2")).to.be.undefined;
+  });
+
+  it("listBoxes ", () => {
+    movingHandler.addBox(box);
+    movingHandler.addBox(box2);
+    movingHandler.addBox(box3);
+    movingHandler.addBox(box4);
+    expect(movingHandler.listBoxes()).to.equal(undefined);
   });
 });

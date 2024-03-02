@@ -44,6 +44,10 @@ describe('Rational class that implements Arithmeticable interface tests', () => 
         let result = rational1.divide(rational2);
         expect(result).to.be.deep.equal(new Rational(2, 3));
     });
+
+    it('Rational denominator 0 test', () => {
+        expect(() => new Rational(1, 0)).to.throw('El denominador no puede ser 0');
+    });
 });
 
 describe('Complex class that implements Arithmeticable interface tests', () => {
@@ -73,6 +77,11 @@ describe('Complex class that implements Arithmeticable interface tests', () => {
         let complex2 = new Complex(3, 4);
         let result = complex1.divide(complex2);
         expect(result).to.be.deep.equal(new Complex(0.44, 0.08));
+    });
+
+    it('Complex to string test', () => {
+        let complex1 = new Complex(1, 2);
+        expect(complex1.toString()).to.be.equal("1 + 2i");
     });
 });
 
