@@ -20,6 +20,6 @@ export class Printer implements Printable {
    * Imprime un documento.
    */
   print(): void {
-    console.log('Imprimiendo...');
+    console.log('Printing...');
   }
 }

@@ -51,6 +51,17 @@ describe("FileWriter class tests", () => {
       "Esto es una prueba para comprobar la clase FileWriter",
     );
   });
+
+  it("FileWrite force error", () => {
+    const fileWriter: FileWriter = new FileWriter(
+      "./tests/Ejercicio-3/readonly.txt",
+    );
+    let result = fileWriter.writeFile(
+      "Esto es una prueba para comprobar la clase FileWriter",
+    );
+    // Esperamos que resultado sea un error de tipo Error
+    expect(result).to.be.undefined;
+    });
 });
 
 describe("FileManager class tests", () => {

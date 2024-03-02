@@ -10,8 +10,8 @@
  * Práctica 6: Clases e interfaces genéricas. Principios SOLID
  */
 
-import { Printable } from './Printable';
-import { Scannable } from './Scannable';
+import { Printable } from "./Printable";
+import { Scannable } from "./Scannable";
 
 /**
  * Clase que representa una impresora y escáner.
@@ -22,13 +22,13 @@ export class PrinterScanner implements Printable, Scannable {
    * Imprime un documento.
    */
   print(): void {
-    console.log('Imprimiendo...');
+    console.log('Printing...');
   }
 
   /**
    * Escanea un documento.
    */
   scan(): void {
-    console.log('Escaneando...');
+    console.log('Scanning...');
   }
 }

@@ -103,24 +103,6 @@ describe("BillsHandler class tests", () => {
         billsHandler.exportBill(3);
     });
 
-    it("BillsHandler class can list bills, andres and pablo", () => {
-        const billsHandler: BillsHandler = new BillsHandler();
-        const bill: Bill = new Bill(1, new Date() , 100, "andres");
-        const bill2: Bill = new Bill(2, new Date() , 200, "pablo");
-        billsHandler.addBill(bill);
-        billsHandler.addBill(bill2);
-        billsHandler.listBills();
-    });
-
-    it("BillsHandler class can list bills by name, name searched oscar", () => {
-        const billsHandler: BillsHandler = new BillsHandler();
-        const bill: Bill = new Bill(1, new Date() , 100, "oscar");
-        const bill2: Bill = new Bill(2, new Date() , 200, "pablo");
-        billsHandler.addBill(bill);
-        billsHandler.addBill(bill2);
-        billsHandler.listBillsByName("oscar");
-    });
-
     it("BillsHandler class can change exporter PDF -> HTML", () => {
         const billsHandler: BillsHandler = new BillsHandler();
         const bill: Bill = new Bill(1, new Date() , 100, "oscar");
@@ -128,5 +110,12 @@ describe("BillsHandler class tests", () => {
         billsHandler.exportBill(1);
         billsHandler.setExporter(new Exporter<ExportBill>(new ExportHTML()));
         billsHandler.exportBill(1);
+    });
+
+    it("BillHandler export all bills", () => {
+        const bill: Bill = new Bill(1, new Date() , 100, "oscar");
+        const bill2: Bill = new Bill(2, new Date() , 200, "pablo");
+        const billsHandler: BillsHandler = new BillsHandler([bill, bill2]);
+        billsHandler.exportBills();
     });
 });

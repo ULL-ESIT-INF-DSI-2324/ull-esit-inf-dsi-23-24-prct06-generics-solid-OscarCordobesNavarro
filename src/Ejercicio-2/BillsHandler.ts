@@ -83,26 +83,11 @@ export class BillsHandler {
     /**
      * Lista todas las facturas utilizando el objeto Exporter.
      */
-    public listBills(): void {
+    public exportBills(): void {
         const iterator = this.getBills();
         let result = iterator.next();
         while (!result.done) {
             this.exporter.exportBill(result.value);
-            result = iterator.next();
-        }
-    }
-
-    /**
-     * Lista las facturas cuyo cliente coincide con el nombre proporcionado.
-     * @param name - Nombre del cliente.
-     */
-    public listBillsByName(name: string): void {
-        const iterator = this.getBills();
-        let result = iterator.next();
-        while (!result.done) {
-            if (result.value.getClient() === name) {
-                this.exporter.exportBill(result.value);
-            }
             result = iterator.next();
         }
     }
