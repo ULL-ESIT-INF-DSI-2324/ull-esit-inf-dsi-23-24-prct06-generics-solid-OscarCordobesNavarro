@@ -13,7 +13,7 @@ Por último, también estaremos utilizando Istanbul y Coveralls para el cubrimie
 
 ## Resolución de ejercicios
 
-## Ejercicio 1 - La mudanza
+### Ejercicio 1 - La mudanza
 
 La idea es crear un tipo de gestor para una mudanza, donde tendremos enseres que serán almacenados en cajas. Posteriormente, estas cajas serán gestionadas por el servicio de mudanza en sí. El sistema se estructurará de la siguiente manera:
 
@@ -297,3 +297,139 @@ export class BillsHandler {
 > Esta clase viene acompañada de algunos métodos para añadir, eliminar, exportar las facturas y demás.
 
 ### Ejercicio 3 - Gestor de ficheros
+
+En este ejercicio, al seguir de manera rigurosa los principios SOLID, nos percatamos de que estamos infringiendo el principio de Responsabilidad Única, el cual establece que una clase debería tener solo una responsabilidad. Para abordar esta situación, creamos una clase dedicada a la escritura llamada `FileWriter` y otra para la lectura llamada `FileReader`:
+
+```typescript
+export class FileWriter {
+  private file: string;
+
+  constructor(file: string) {
+    this.file = file;
+  }
+
+  public writeFile(data: string): void {
+    try {
+      fs.writeFileSync(this.file, data, 'utf-8');
+      console.log('Archivo escrito exitosamente.');
+    } catch (error) {
+      console.error('Error al escribir en el archivo:', (error as Error).message);
+    }
+  }
+}
+
+export class FileReader {
+  private file: string;
+
+  constructor(file: string) {
+    this.file = file;
+  }
+
+  public readFile(): string {
+    try {
+      const content: string = fs.readFileSync(this.file, "utf-8");
+      return content;
+    } catch (error) {
+      console.error("Error al leer el archivo:", (error as Error).message);
+      return "";
+    }
+  }
+}
+```
+
+Y manejamos las operaciones con la clase `FileManager`:
+```typescript
+export class FileManager {
+  constructor(private filePath: string) {}
+
+  public writeFile(data: string): void {
+    const writeFile = new FileWriter(this.filePath);
+    writeFile.writeFile(data);
+  }
+
+  public readFile(): string {
+    const readFile = new FileReader(this.filePath);
+    return readFile.readFile();
+  }
+}
+``` 
+
+### Ejercicio 4 - Impresoras y escáneres
+
+En este ejercicio, notamos que estamos infringiendo el principio de segregación de interfaces, el cual establece que una clase no debe verse obligada a implementar interfaces que no utiliza. Para abordar esta situación, dividimos la interfaz en dos partes: `Printable` y `Scannable`. De esta manera, cada clase puede implementar únicamente la interfaz que necesita.
+
+```typescript
+export interface Printable {
+  print(): void;
+}
+
+export interface Scannable {
+  scan(): void;
+}
+```
+
+Y ahora se lo implementamos a las clases correspondientes:
+
+```typescript
+export class Printer implements Printable {
+  print(): void {
+    console.log('Printing...');
+  }
+}
+
+export class Scanner implements Scannable {
+  scan(): void {
+    console.log('Scanning...');
+  }
+}
+```
+
+Y manejamos las dos clases con `PrinterScanner`:
+
+```typescript
+export class PrinterScanner implements Printable, Scannable {
+  print(): void {
+    console.log('Printing...');
+  }
+  scan(): void {
+    console.log('Scanning...');
+  }
+}
+```
+
+### Ejercicio 5 - Servicio de mensajería
+
+En este ejercicio, se incumple el principio de inversión de dependencias ya que la clase `Notifier` depende directamente de las  de `EmailService` y `ShortMessageService` . Para ello la solución es crear una interfaz común, que en este caso la he decidido llamar `NotificationService` aplicandole un parámetro de tipo para que sea mas escalable. 
+
+```typescript
+export interface NotificationService<T> { 
+    notify(message: T): void;
+}
+```
+
+Quedando las clases de `EmailService` y `ShortMessageService` de esta manera:
+
+```typescript
+export class EmailService implements NotificationService<string> {
+  notify(message: string): void {
+    console.log(`Sending notification by email: ${message}`);
+  }
+}
+
+export class ShortMessageService implements NotificationService<string> {
+  notify(message: string): void {
+    console.log(`Sending notification by SMS: ${message}`);
+  }
+}
+```
+
+Y el notificador simplemente llamaría al servicio correspondiente:
+```typescript
+export class Notifier<T> {
+  constructor(private notificationService: NotificationService<T>) {}
+
+  sendNotification(message: T): void {
+    this.notificationService.notify(message);
+  }
+}
+```
