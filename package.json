@@ -7,7 +7,7 @@
     "dev": "tsc-watch --onSuccess \"node ./dist/Ejercicio-5/index.js\"",
     "doc": "typedoc",
     "test": "mocha",
-    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls && rm -rf .nyc_output",
+    "coverage": "nyc npm test && nyc report --reporter=lcov",
     "istanbul": "nyc npm test"
   },
   "keywords": [],
@@ -21,7 +21,6 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "chai": "^4.4.1",
-    "coveralls": "^3.1.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "mocha": "^10.2.0",
